@@ -1,0 +1,40 @@
+### Variables
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjU2YjFjMjM4ODhiODljMmJkMjkxNiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc4MDg1MTM4NCwiZXhwIjoxNzgzNDQzMzg0fQ.KaeNLT8Q0A2eH1RWrIDga0YU1_c9c7xXVsPytpT9nno
+
+### 1. Create a Product (Admin Only) - NAYA PRODUCT ADD KARNE KE LIYE
+POST http://localhost:5000/api/products
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "UltraWide Gaming Monitor",
+    "description": "144Hz refresh rate, 1ms response time gaming monitor.",
+    "price": 299,
+    "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf",
+    "category": "Electronics",
+    "countInStock": 7
+}
+
+### --------------------------------------------------
+
+### 2. Get All Products (Public Route)
+GET http://localhost:5000/api/products
+
+### --------------------------------------------------
+
+### 3. Update a Product (Admin Only)
+PUT http://localhost:5000/api/products/6a25a2f51717b32efca350c1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Wireless Gaming Mouse v2",
+    "price": 50,
+    "countInStock": 10
+}
+
+### --------------------------------------------------
+
+### 4. Delete a Product (Admin Only)
+DELETE http://localhost:5000/api/products/6a25a2f51717b32efca350c1
+Authorization: Bearer {{token}}
