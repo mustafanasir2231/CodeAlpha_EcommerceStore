@@ -7,7 +7,7 @@ const blogs = [
     category: 'Fashion', 
     time: '5 min', 
     excerpt: 'Discover the latest styles shaping the fashion industry this year.',
-    // Naya reliable link
+    
     image: 'https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   { 
@@ -16,7 +16,7 @@ const blogs = [
     category: 'Shopping', 
     time: '4 min', 
     excerpt: 'A guide to ensuring you get the best value for your money.',
-    // Naya reliable link
+    
     image: 'https://images.pexels.com/photos/5632396/pexels-photo-5632396.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   { 

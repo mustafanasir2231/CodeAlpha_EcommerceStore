@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'; // 1. useLocation import kiya
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'; // 1. Imported useLocation
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomeScreen from './pages/HomeScreen';
@@ -20,7 +20,7 @@ import BlogsScreen from './pages/BlogsScreen';
 import ContactScreen from './pages/ContactScreen';
 import PaymentPage from './pages/PaymentPage';
 
-// 2. Footer Wrapper banaya taake useLocation use kar sakein
+// 2. Created FooterWrapper to use useLocation hook
 const FooterWrapper = () => {
   const location = useLocation();
   const showFooterPages = ['/', '/about', '/blogs', '/contact'];
@@ -53,11 +53,10 @@ const App = () => {
             <Route path="/blogs" element={<BlogsScreen />} /> 
             <Route path="/contact" element={<ContactScreen />} />
             <Route path="/payment" element={<PaymentPage />} />
-
           </Routes>
         </main>
 
-        {/* 3. Footer ko yahan FooterWrapper se replace kiya */}
+        {/* 3. Replaced Footer with FooterWrapper here */}
         <FooterWrapper />
       </div>
     </Router>

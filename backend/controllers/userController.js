@@ -3,18 +3,18 @@ import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 
 const updateUserProfile = asyncHandler(async (req, res) => {
-  // 1. User find karein
+  // 1. find User  
   const user = await User.findById(req.user._id);
 
   if (user) {
-    // 2. Name aur Email update karein
+    // 2. update Name aur Email update 
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
 
-    // 3. Password check (sirf tab jab newPassword bheja gaya ho)
+    // 3. Password check 
     if (req.body.newPassword && req.body.newPassword !== "") {
       
-      // Current password check lazmi hai
+      // check Current password  
       if (!req.body.currentPassword) {
         res.status(400);
         throw new Error('Please enter your current password');
@@ -27,14 +27,14 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         throw new Error('Invalid current password');
       }
 
-      // Naya password hash karein
+      // new password hash 
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(req.body.newPassword, salt);
     }
 
     const updatedUser = await user.save();
 
-    // 4. Client ko updated data bhejein
+    // 4. Client  updated
     res.json({
       _id: updatedUser._id,
       name: updatedUser.name,

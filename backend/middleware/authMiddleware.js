@@ -1,19 +1,19 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js';
 
-// Route ko protect karne ke liye middleware (Check karega token sahi hai ya nahi)
+// Middleware to protect routes by verifying the user's authentication token
 export const protect = async (req, res, next) => {
     let token;
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
-            // Header se token nikalna ("Bearer token_string")
+            // Extract token from the Authorization header ("Bearer token_string")
             token = req.headers.authorization.split(' ')[1];
 
-            // Token ko verify karna
+            // Verify the token
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-            // User ka data request object mein daalna (bina password ke)
+            // Attach user data to the request object (excluding the password)
             req.user = await User.findById(decoded.id).select('-password');
 
             next();
@@ -28,7 +28,7 @@ export const protect = async (req, res, next) => {
     }
 };
 
-// Admin check karne ke liye middleware
+// Middleware to check if the authenticated user is an admin
 export const isAdmin = (req, res, next) => {
     if (req.user && req.user.role === 'admin') {
         next();

@@ -8,7 +8,7 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   
-  // Eye icons ke liye states
+  // States for eye icons
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -39,12 +39,12 @@ const RegisterScreen = () => {
       setError('');
       
       const config = { headers: { 'Content-Type': 'application/json' } };
-      // Register request bhej rahe hain
+      // Sending register request
       await axios.post('/api/auth/register', { name, email, password }, config);
 
       setLoading(false);
       
-      // Success message ke sath login page par bhejein (Auto-login hataya gaya)
+      // Redirect to login page with success message (auto-login removed)
       navigate('/login?message=Account created successfully! Please login.');
       
     } catch (err) {

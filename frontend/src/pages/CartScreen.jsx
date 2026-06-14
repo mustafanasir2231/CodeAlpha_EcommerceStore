@@ -5,13 +5,13 @@ const CartScreen = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
 
-  // Page load hote hi localStorage se cart items nikalna
+  // Get cart items from localStorage on page load
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cartItems')) || [];
     setCartItems(items);
   }, []);
 
-  // Quantity update karne ka function
+  // Function to update quantity
   const updateQtyHandler = (id, qty) => {
     const updatedItems = cartItems.map((item) =>
       item.product === id ? { ...item, qty: Number(qty) } : item
@@ -20,7 +20,7 @@ const CartScreen = () => {
     localStorage.setItem('cartItems', JSON.stringify(updatedItems));
   };
 
-  // Item ko cart se remove karne ka function
+  // Function to remove item from cart
   const removeFromCartHandler = (id) => {
     const filteredItems = cartItems.filter((item) => item.product !== id);
     setCartItems(filteredItems);
@@ -31,14 +31,14 @@ const CartScreen = () => {
   const checkoutHandler = () => {
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {
-      navigate('/shipping'); // Agar login hai toh seedha shipping par bhejo
+      navigate('/shipping'); // If logged in, go directly to shipping
     } else {
-      // 🎯 UPDATE: Ab link ke andar redirect ke sath clear notification message bhi pass ho rha hai
+      // Updated: Now passing redirect and clear notification message inside link
       navigate('/login?redirect=shipping&message=Please login first to proceed to checkout'); 
     }
   };
 
-  // Total Price aur Total Items calculate karna
+  // Calculate total price and total items
   const totalItems = cartItems.reduce((acc, item) => acc + item.qty, 0);
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2);
 

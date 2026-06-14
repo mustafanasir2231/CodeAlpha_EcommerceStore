@@ -18,7 +18,7 @@ const MyOrdersPage = () => {
           headers: { Authorization: `Bearer ${userInfo.token}` } 
         };
 
-        // Yahan console mein check karein request kahan ja rahi hai
+        
         const { data } = await axios.get('/api/orders/myorders', config);
         setOrders(data);
         setLoading(false);

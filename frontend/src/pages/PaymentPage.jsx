@@ -58,8 +58,8 @@ function CheckoutForm({ clientSecret, orderId }) {
   if (success) {
     return (
       <div style={styles.successBox}>
-        <h2>✅ Payment Ho Gayi!</h2>
-        <p>Aapka order confirm ho gaya. Thodi der mein orders page pe jaoge...</p>
+        <h2>✅ Payment Successful!</h2>
+        <p>Your order has been confirmed. You will be redirected to your orders page shortly...</p>
       </div>
     );
   }
@@ -86,7 +86,7 @@ function CheckoutForm({ clientSecret, orderId }) {
       </p>
       {error && <p style={styles.errorText}>{error}</p>}
       <button type="submit" disabled={!stripe || loading} style={styles.btn}>
-        {loading ? "Payment Ho Rahi Hai..." : "Pay Now"}
+        {loading ? "Processing Payment..." : "Pay Now"}
       </button>
     </form>
   );
@@ -137,7 +137,7 @@ export default function PaymentPage() {
         setOrderId(data.order._id);
         setOrderDetails(data.order);
       } catch (err) {
-        console.error("Order nahi bana:", err);
+        console.error("Failed to create order:", err);
       }
     };
 
@@ -159,7 +159,7 @@ export default function PaymentPage() {
             <CheckoutForm clientSecret={clientSecret} orderId={orderId} />
           </Elements>
         ) : (
-          <p style={styles.loading}>Order prepare ho raha hai...</p>
+          <p style={styles.loading}>Preparing your order...</p>
         )}
       </div>
     </div>

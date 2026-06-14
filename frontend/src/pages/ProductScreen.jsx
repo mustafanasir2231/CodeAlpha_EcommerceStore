@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { CartContext } from '../context/CartContext.jsx'; // Context Import kiya
+import { CartContext } from '../context/CartContext.jsx'; // Imported Context
 
 const ProductScreen = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart } = useContext(CartContext); // Context se function liya
+  const { addToCart } = useContext(CartContext); // Got function from Context
   
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [qty, setQty] = useState(1);
+  const [message, setMessage] = useState(''); // For success notification
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -36,7 +37,7 @@ const ProductScreen = () => {
     if (qty < product.countInStock) setQty(qty + 1);
   };
 
-  // 🔥 UPDATED: Context API Logic
+  // Updated: Context API Logic with message instead of alert
   const addToCartHandler = () => {
     addToCart({
       product: product._id,
@@ -46,8 +47,9 @@ const ProductScreen = () => {
       countInStock: product.countInStock,
       qty: qty,
     });
-    // Alert hum Context ke andar bhi laga sakte hain ya yahan
-    alert(`${qty} ${product.name} cart mein add ho gaye hain! 🎉`);
+    setMessage(`${qty} ${product.name} added to cart! 🎉`);
+    // Auto-hide message after 3 seconds
+    setTimeout(() => setMessage(''), 3000);
   };
 
   const buyNowHandler = () => {
@@ -75,6 +77,26 @@ const ProductScreen = () => {
   return (
     <div style={{ padding: '35px 20px', backgroundColor: '#f8fafc', minHeight: 'calc(100vh - 74px)', fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', boxSizing: 'border-box' }}>
       
+      {/* Success Message */}
+      {message && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          backgroundColor: '#10b981',
+          color: 'white',
+          padding: '12px 20px',
+          borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+          zIndex: 1000,
+          fontSize: '14px',
+          fontWeight: '500',
+          fontFamily: '"Inter", sans-serif'
+        }}>
+          {message}
+        </div>
+      )}
+
       <div style={{ maxWidth: '900px', margin: '0 auto 16px auto' }}>
         <Link to="/" style={{ color: '#64748b', textDecoration: 'none', fontSize: '13px', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
           ← Back to Marketplace

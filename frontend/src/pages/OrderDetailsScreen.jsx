@@ -4,7 +4,7 @@ import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-// ✅ Key directly hardcode ki hai
+
 const stripePromise = loadStripe('pk_test_51Thm0bRsdzsXviixD9xEjoSfVlhIKS71y9yBDO9BTSZtTyhKAL91EJETtvb0337PvL4BrJ6tlqeMh83xUaj8oIMM001VCbvtwP');
 
 const StripePaymentForm = ({ orderId, clientSecret, onSuccess }) => {

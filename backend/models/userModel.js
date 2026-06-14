@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs'; // Password hashing ke liye import kiya
+import bcrypt from 'bcryptjs'; // Import bcrypt for password hashing
 
-// User Schema design kar rahe hain
+// Define the User Schema
 const userSchema = new mongoose.Schema(
     {
         name: {
@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
         email: {
             type: String,
             required: [true, 'Please add an email'],
-            unique: true, // Ek email se do accounts nahi ban sakte
+            unique: true, // Prevent duplicate accounts with the same email
             trim: true,
             lowercase: true,
         },
@@ -21,21 +21,21 @@ const userSchema = new mongoose.Schema(
         },
         role: {
             type: String,
-            enum: ['user', 'admin'], // Sirf 'user' ya 'admin' hi ho sakta hai
-            default: 'user', // Naya register hone wala default user hoga
+            enum: ['user', 'admin'], // Only 'user' or 'admin' roles are allowed
+            default: 'user', // Default role for newly registered users
         },
     },
     {
-        timestamps: true, // Yeh khud-ba-khud 'createdAt' aur 'updatedAt' ki date save karega
+        timestamps: true, // Automatically adds createdAt and updatedAt fields
     }
 );
 
-// 🔒 METHOD: Login ke waqt password verify karne ke liye
+// Method to verify the password during login
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
-// 🛡️ PRE-SAVE HOOK: Database mein save hone se pehle password ko hash karne ke liye
+// Pre-save hook to hash the password before saving it to the database
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) {
         next();

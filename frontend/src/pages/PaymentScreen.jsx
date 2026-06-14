@@ -12,7 +12,7 @@ const PaymentScreen = () => {
   };
 
   return (
-// Sirf ye line change karein:
+
 <div style={{ maxWidth: '400px', margin: '40px auto', padding: '25px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', borderRadius: '12px', backgroundColor: '#fff' }}>      <h2 style={{ marginBottom: '25px', textAlign: 'center' }}>Select Payment Method</h2>
       
       <form onSubmit={submitHandler}>
@@ -21,7 +21,7 @@ const PaymentScreen = () => {
           <div style={{ padding: '15px', border: '1px solid #ddd', borderRadius: '8px', cursor: 'pointer' }}>
             <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
               <input type="radio" value="PayPal" checked={paymentMethod === 'PayPal'} onChange={(e) => setPaymentMethod(e.target.value)} style={{ marginRight: '10px' }} />
-              PayPal or Credit Card
+               Credit Card
             </label>
           </div>
 

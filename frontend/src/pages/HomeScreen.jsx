@@ -47,11 +47,11 @@ const HomeScreen = () => {
   return (
     <div style={{ 
       padding: '24px 20px',
-      paddingBottom: '80px', // Footer se gap ke liye ye important hai
+      paddingBottom: '80px', 
       backgroundColor: '#f8fafc', 
       minHeight: 'calc(100vh - 74px)', 
-      display: 'flex',            // Layout ko fix karne ke liye
-      flexDirection: 'column',    // Layout ko fix karne ke liye
+      display: 'flex',            
+      flexDirection: 'column',    
       fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       boxSizing: 'border-box'
     }}>

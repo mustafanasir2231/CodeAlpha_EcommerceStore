@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const ShippingScreen = () => {
   const navigate = useNavigate();
 
-  // Agar pehle se address save hai toh load kar lo
+  // Load saved address if it exists
   const savedAddress = JSON.parse(localStorage.getItem('shippingAddress') || '{}');
 
   const [address, setAddress]       = useState(savedAddress.address || '');
@@ -12,7 +12,7 @@ const ShippingScreen = () => {
   const [postalCode, setPostalCode] = useState(savedAddress.postalCode || '');
   const [country, setCountry]       = useState(savedAddress.country || '');
 
-  // Agar user login nahi hai toh wapas bhejna
+  // Redirect if user is not logged in
   useEffect(() => {
     const userInfo = localStorage.getItem('userInfo');
     if (!userInfo) navigate('/login?redirect=shipping');
@@ -27,7 +27,7 @@ const ShippingScreen = () => {
     navigate('/payment');
   };
 
-  // Input field style (same as your RegisterScreen)
+  // Input field style (same as RegisterScreen)
   const inputStyle = {
     width: '100%',
     padding: '10px 14px',

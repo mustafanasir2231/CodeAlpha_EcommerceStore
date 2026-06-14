@@ -24,4 +24,4 @@ router.get('/seed', async (req, res) => {
 router.route('/').get(getProducts).post(protect, isAdmin, createProduct);
 router.route('/:id').get(getProductById).put(protect, isAdmin, updateProduct).delete(protect, isAdmin, deleteProduct);
 
-export default router; // <--- Yeh line export default hai, jo error fix karegi
+export default router; 

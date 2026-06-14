@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
-import toast from 'react-hot-toast'; // Toast import karein
+import toast from 'react-hot-toast'; // Toast import 
 
 export const CartContext = createContext();
 
@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product) => {
     setCartItems((prev) => [...prev, product]);
-    toast.success(`${product.name} added to cart!`); // Alert ki jagah toast
+    toast.success(`${product.name} added to cart!`); 
   };
 
   return (

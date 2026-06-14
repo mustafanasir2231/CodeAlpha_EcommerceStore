@@ -10,15 +10,15 @@ const AboutScreen = () => {
   return (
     <div style={{ padding: '80px 20px', maxWidth: '900px', margin: '0 auto', fontFamily: '"Inter", sans-serif', color: '#334155' }}>
       
-      {/* Updated Stylish Header */}
+      
       <div style={{ textAlign: 'center', marginBottom: '60px' }}>
         <h1 style={{ 
-          fontSize: '36px', // Font size chota kiya
+          fontSize: '36px', 
           color: '#1e293b', 
-          fontWeight: '700', // Modern stylish weight
+          fontWeight: '700',
           letterSpacing: '-0.5px', 
           marginBottom: '10px',
-          textTransform: 'uppercase' // Stylish look ke liye
+          textTransform: 'uppercase' 
         }}>
           About <span style={{ color: '#2563eb' }}>Mustafa Store</span>
         </h1>
@@ -44,8 +44,8 @@ const AboutScreen = () => {
             src="/logo.jfif" 
             alt="Mustafa Store Logo" 
             style={{ 
-              width: '320px', // Width badhayi
-              height: '180px', // Height control ki rectangle ke liye
+              width: '320px', 
+              height: '180px', 
               objectFit: 'contain', 
               borderRadius: '12px',
               backgroundColor: '#f8fafc',

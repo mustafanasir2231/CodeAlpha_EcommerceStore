@@ -29,10 +29,10 @@ const PlaceOrderScreen = () => {
         totalPrice,
       }, config);
 
-      // Cart clear karo
+      // Clear cart
       localStorage.removeItem('cartItems');
 
-      // ✅ FIX: clientSecret order ID ke sath save karo
+      // Save clientSecret with order ID
       const orderId = data.order ? data.order._id : data._id;
       if (data.clientSecret) {
         localStorage.setItem(`clientSecret_${orderId}`, data.clientSecret);
@@ -40,7 +40,7 @@ const PlaceOrderScreen = () => {
 
       navigate(`/order/${orderId}`);
     } catch (error) {
-      alert(error.response?.data?.message || 'Order place karne mein masla hua!');
+      alert(error.response?.data?.message || 'An error occurred while placing the order!');
     } finally {
       setLoading(false);
     }
@@ -55,7 +55,7 @@ const PlaceOrderScreen = () => {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr', gap: '40px' }}>
 
-        {/* ── LEFT: Details ── */}
+        {/* LEFT: Details */}
         <div>
           {/* Shipping */}
           <div style={{ marginBottom: '24px' }}>
@@ -118,7 +118,7 @@ const PlaceOrderScreen = () => {
           </div>
         </div>
 
-        {/* ── RIGHT: Summary ── */}
+        {/* RIGHT: Summary */}
         <div style={{
           background: '#ffffff', border: '1px solid #e2e8f0', padding: '24px',
           borderRadius: '12px', height: 'fit-content',
